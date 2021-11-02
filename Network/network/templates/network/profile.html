@@ -1,0 +1,82 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <div id="head">
+        <h2 class="seed">{{ user_obj.username }}</h2>
+
+        {% if user_obj.photo %}
+            <img id="profile_image" src="{{ user_obj.photo.url }}" alt="image">
+        {% else %}
+            <img id="profile_image" src="{% static 'network/avatardefault.png' %}" alt="image">
+        {% endif %}
+
+        <p class="seed"><strong>Email: </strong>{{ user_obj.email }}</p>
+        <p class="seed"><strong>Joined: </strong>{{ user_obj.date_joined }}</p>
+        <p class="seed"><strong>Last modified: </strong>{{ user_obj.last_modified }}</p>
+
+        {% if is_owner %}
+        <p>
+            <input class="btn btn-outline-success btn-sm" type="file" id="photo_input">
+        </p>
+        <p>
+            <button id='load_photo' class='btn btn-outline-success btn-sm'>Upload</button>
+        </p>
+        {% else %}
+        <p>
+            <button id='follow_unfollow' class='btn btn-outline-success btn-sm'>{{ follow_unfollow }}</button>
+        </p>
+        {% endif %}
+    
+        <p>
+            <span class="btn btn-outline-success btn-sm" id="follower_button">Followers {{ followers_count }}</span>
+            <span class="btn btn-outline-success btn-sm" id="following_button">Following {{ following_count }}</span>
+        </p>
+    </div>
+
+    <div id='body-content'></div>
+    <div id='pagination'></div>
+    
+{% endblock %}
+
+{% block window %}
+
+    <p id="cross" style="text-align: end;"><span>&#10007</span></p>
+    
+    <div id="follower_list">
+        <p>Followers</p>
+        <ul>
+            {% for person in  followers%}
+                <li><a href="/profile/{{ person.user }}">
+                    {% if person.user.photo %}
+                        <img class="user_photo" src="{{ person.user.photo.url }}" alt="image"></img> {{ person.user }}</a></li>
+                    {% else %}
+                        <img class="user_photo" src="{% static 'network/avatardefault.png' %}" alt="image"></img> {{ person.user }}</a></li>
+                    {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div id="following_list">
+        <p>Following</p>
+        <ul>
+            {% for person in  following%}
+                <li><a href="/profile/{{ person }}">
+                    {% if person.photo %}
+                        <img class="user_photo" src="{{ person.photo.url }}" alt="image"></img> {{ person }}</a></li>
+                    {% else %}
+                        <img class="user_photo" src="{% static 'network/avatardefault.png' %}" alt="image"></img> {{ person }}</a></li>
+                    {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/profile.js' %}"></script>
+    <script src="{% static 'network/functions.js' %}"></script>
+    <script src="{% static 'network/pagination.js' %}" type="text/babel"></script>
+{% endblock %}
+

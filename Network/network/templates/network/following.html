@@ -1,0 +1,17 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <h2>{{ user.username }}'s follows</h2>
+    
+    <div id='body-content'></div>
+    <div id='pagination'></div>
+    
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/following.js' %}"></script>
+    <script src="{% static 'network/functions.js' %}"></script>
+    <script src="{% static 'network/pagination.js' %}" type="text/babel"></script>
+{% endblock %}

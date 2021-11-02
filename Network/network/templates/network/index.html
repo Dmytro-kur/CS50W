@@ -1,0 +1,19 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <form>
+        <div id='editor'>
+            <p>Write your post here.</p>
+        </div>
+        <button class="btn btn-outline-success btn-sm" id="submit-post">Post</button>
+    </form>
+    <div id='body-content'></div>
+    <div id='pagination'></div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/index.js' %}"></script>
+    <script src="{% static 'network/functions.js' %}"></script>
+    <script src="{% static 'network/pagination.js' %}" type="text/babel"></script>
+{% endblock %}

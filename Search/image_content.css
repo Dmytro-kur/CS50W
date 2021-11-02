@@ -1,0 +1,36 @@
+.content {
+  padding-bottom: 35px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.center {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding-left: 250px;
+
+}
+
+}
+.hplogo {
+  display: inline-inline-block;
+  position: relative;
+  height: 180px;
+  width: 500px;
+  line-height: 180px;
+  max-width: 100%
+
+}
+.gimg {
+  padding-top: 21px;
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+  width: 500px;
+}
+.Ihplogo {
+  background: url(https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png);
+  background-size: 272px 92px;
+  height: 92px;
+  width: 272px;
+}

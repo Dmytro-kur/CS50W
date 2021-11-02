@@ -1,0 +1,15 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+
+    <h1>{{ body_title }}</h1>
+
+    <div class="alert alert-warning" role="alert">
+{{ message }}
+    </div>
+
+{% endblock %}

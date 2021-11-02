@@ -1,0 +1,20 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    New Entry
+{% endblock %}
+
+{% block body %}
+
+    <h1>New entry</h1>
+
+    <form action="{% url 'encyclopedia:new_page' %}" method="post">
+      {% csrf_token %}
+      <div style="vertical-align: baseline;">Page title: </div>
+      <textarea style="height: 30px; width: 300px; vertical-align: baseline;" id="title" name="title" rows="4" cols="50"></textarea>
+      <p>Text area: </p>
+      <textarea style="height: 500px; width: 1000px;" id="textarea" name="textarea"></textarea>
+      <p><input type="submit" value="Save"></p>
+    </form>
+
+{% endblock %}

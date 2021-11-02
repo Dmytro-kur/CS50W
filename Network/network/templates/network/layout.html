@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <title>{% block title %}Social Network{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}">
+        <link href="{% static 'network/styles.css' %}" rel="stylesheet">
+        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script src="{% static 'network/ckeditor5/build/ckeditor.js' %}"></script>
+        {% block script %}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="layer1">
+            {% if user.is_authenticated %}
+                <p style="margin: 5px;">Signed in as {{ user.username }}</p>
+            {% endif %}
+
+            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #568203">
+                <a class="navbar-brand" href="#">Network</a>
+                <div>
+                <ul class="navbar-nav mr-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'profile' profile_name=user.username %}"><strong>Profile</strong></a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">All Posts</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a id="following" class="nav-link" href="{% url 'following' %}">Following</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                </div>
+            </nav>
+            
+            <div class="body">
+                {% block body %}
+                {% endblock %}
+            </div>
+        </div>
+
+        <div class="layer2">
+            {% block window %}
+            {% endblock %}
+        </div>
+    </body>
+
+
+</html>

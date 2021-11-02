@@ -1,0 +1,17 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+
+    <!--<h1>{{ body_title }}</h1>-->
+
+    {{ entry|safe }}
+
+    <form action="http://127.0.0.1:8000/edit/{{ title }}">
+      <input type="submit" value="Edit">
+    </form>
+
+{% endblock %}
